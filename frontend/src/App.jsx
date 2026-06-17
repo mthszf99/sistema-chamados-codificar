@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import ListaChamados from './components/ListaChamados';
+import FormularioChamado from './components/FormularioChamado';
 
 function App() {
+  const [gatilhoAtualizacao, setGatilhoAtualizacao] = useState(false);
+
+  const atualizarLista = () => {
+    setGatilhoAtualizacao(!gatilhoAtualizacao);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto">
@@ -12,10 +20,11 @@ function App() {
         </header>
 
         <main>
-          {/* formulario */}
+          {/* propriedade de atualizar */}
+          <FormularioChamado aoCriarChamado={atualizarLista} />
           
-          {/* lista de chamados */}
-          <ListaChamados />
+          {/* recarrega quando atualiza chamado */}
+          <ListaChamados atualizar={gatilhoAtualizacao} />
         </main>
       </div>
     </div>
